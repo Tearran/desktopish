@@ -42,7 +42,7 @@ Follow these steps to quickly get started with Simulated Desktop:
   bash ./server.sh
   ```
 
-- For Windows users, open Command Prompt and follow the same steps 1-3, but use the following command to run the server:
+For Windows users, open Command Prompt and follow the same steps 1-3, but use the following command to run the server:
 
   ```
   server.bat
