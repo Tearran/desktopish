@@ -27,13 +27,13 @@ Follow these steps to quickly get started with Simulated Desktop:
 1. Clone the repository:
 
   ```
-  git clone https://github.com/Tearran/simulated-desktop.git
+ https://github.com/Tearran/desktopish.git
   ```
 
 2. Navigate to the cloned directory:
 
   ```
-  cd simulated-desktop
+ cd desktopish.git
   ```
 
 3. Run the server:
