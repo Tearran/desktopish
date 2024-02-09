@@ -1,0 +1,329 @@
+
+*,::before,::after
+{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root
+{
+  --background-color:#252525;
+  --bar-background:#292929;
+  --bar-color:#3f3f3f;
+  --color:#ccc;
+  --button-background:#333;
+  --button-color:#fff;
+  --button-hover-background:#ccc;
+  --button-hover-color:#171717;
+  --link-color:#007bff;
+  --link-visited-color:#6610f2;
+  --link-hover-color:#0056b3;
+  --neutral-color:#292929;
+}
+
+.light-mode
+{
+  --background-color:#fff;
+  --bar-background:#ffffff;
+  --color:#333;
+  --button-background:#eee;
+  --button-color:#333;
+  --button-hover-background:#ddd;
+  --button-hover-color:#333;
+  --link-color:#007bff;
+  --link-visited-color:#6610f2;
+  --link-hover-color:#0056b3;
+  --neutral-color:#888;
+}
+
+html,body
+{
+  height:100vh;
+  width:100vw;
+
+} 
+
+body {
+  background-color:var(--background-color);
+  color:var(--color);
+  background-repeat:no-repeat;
+  background-size:cover;
+}
+
+a
+{
+  color:var(--link-color);
+}
+
+a:visited
+{
+  color:var(--link-visited-color);
+}
+
+a:hover
+{
+  color:var(--link-hover-color);
+}
+
+button
+{
+  background-color:var(--button-background);
+  color:var(--color);
+  background:none;
+  border:none;
+  border-radius:4px;
+  cursor:pointer;
+  width:64px;
+  height:32px;
+  padding:10px 20px;
+}
+
+button:hover
+{
+  background-color:var(--button-hover-background)!important;
+  color:var(--button-hover-color)!important;
+  background:var(--button-hover-background);
+}
+
+button:active
+{
+  background-color:var(--button-background);
+  color:var(--button-color);
+}
+
+.menu
+{
+  display:flex;
+  flex-direction:row;
+  justify-content:flex-start;
+  flex-wrap:wrap;
+  align-items:flex-start;
+}
+
+.window-decoration
+{
+  display:flex;
+  justify-content:flex-end;
+  background-color:var(--bar-background);
+  border:1px solid #2c1e1e;
+  border-radius:2px;
+  color:var(--color)!important;
+  height:48px;
+}
+
+.window
+{
+  top:64px;
+  width:calc(100% - 2px);
+  height:calc(100vh - 128px);
+  border:1px solid #000;
+  position:fixed;
+  display:flex;
+  flex-direction:column;
+}
+
+.window-content
+{
+  flex-grow:1;
+  overflow:hidden;
+  width:calc(100% - 2px);
+  height:calc(100% - 2px);
+}
+
+.search-block
+{
+  background-color:var(--settings-background);
+  border:none;
+  margin:10px;
+}
+
+.search-form
+{
+  background-color:var(--settings-background);
+  display:flex;
+  border:none;
+  margin:5px;
+}
+
+.search-form input[type="text"]
+{
+  background-color:var(--settings-background);
+  color:var(--color);
+  flex-grow:1;
+  margin-right:0;
+  border-radius:2px;
+  border:none;
+  padding:2px;
+}
+
+
+
+#start-notes
+{
+  top:0;
+  position:fixed;
+  right:0;
+  width:172px;
+  height:64px;
+  padding:0;
+  width:176px;
+  height:64px;
+  color:var(--color);
+}
+
+#container
+{
+  top:64px;
+  position:fixed;
+  left:0;
+  right:0;
+  width:100%;
+  height:100%;
+  padding:0;
+
+}
+
+.container
+{
+  top:0;
+  position:fixed;
+  left:0;
+  right:0;
+  width:100%;
+  height:64px;
+  padding:0;
+  background-color: var( --neutral-color);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	border: 1px solid black;
+}
+
+.iconContainer
+{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-start;
+  align-items:flex-start;
+  direction:ltr;
+  width:128px;
+  height:100%;
+}
+
+.iconContainerWrapper
+{
+  display:flex;
+  justify-content:space-between;
+}
+
+.parent
+{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+#tasks {
+  top:8px;
+  left: 4px;
+	right: 4px;
+	border-radius: 4px !important;
+
+	display: none;
+	position: absolute;
+	width: calc(50vw - 16px);
+	height: calc(100vh - 128px);
+
+	z-index: 100;
+	background-color: var( --neutral-color);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	border: 1px solid black;
+  flex-direction: column;
+
+}
+
+.search-block, #start-settings {
+  height: 32px;
+  background-color: var(--bar-background);
+}
+
+#supporters-content, #site-links-content {
+  height: 96px;
+}
+
+/* The second row (which is actually the third child of #tasks) will fill the remaining space */
+#tasks > :nth-child(3) {
+  flex-grow: 1;
+}
+
+.custom-button
+{
+  width:96px;
+  height:96px;
+  border:none;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+#note-cal
+{
+  width:100%;
+  height:100%;
+  overflow:auto;
+}
+
+#note-cal table
+{
+  width:calc(100%-16px);
+  height:calc(100%-32px);
+  table-layout:fixed;
+}
+
+#note-cal th,#note-cal td
+{
+  width:14.28%;
+  text-align:center;
+  border:1px solid var(--border-color);
+}
+
+#start-settings {
+    display: flex;
+    flex-direction: row;
+    background: #000;
+    border-radius: 4px 0 0 4px;
+    max-height: 64px;
+    align-items: center;
+}
+.row #start-end
+{
+  height:32px;
+  max-height:64px;
+}
+
+.row
+{
+  flex:1 0 auto;
+}
+
+.hide
+{
+  visibility:hidden;
+}
+
+.show
+{
+  visibility:visible;
+}
+
+@media screen and (orientation: landscape) and (min-width: 600px) {
+  .middle
+  {
+    flex-direction:row;
+  }
+  
+  .cell
+  {
+    flex:1;
+  }
+}

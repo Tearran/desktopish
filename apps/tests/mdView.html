@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Workspace Viewer</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+        }
+        #content {
+            padding: 20px;
+        }
+        a {
+            color: #58a6ff;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #c9d1d9;
+        }
+        code {
+            color: #8b949e;
+        }
+    </style>
+</head>
+<body>
+    <div id="content"></div>
+
+    <script defer>
+        function startApp() {
+            // List of files in your workspace
+            var files = ["armbian-configng.md", "user_manual_generation.md", "armbianmonitor.md"];
+
+            // Function to fetch and display a file
+            function displayFile(file) {
+                fetch(file)
+                    .then(response => response.text())
+                    .then(text => {
+                        var html = marked.parse(text); // Use marked.parse, not marked
+                        document.getElementById('content').innerHTML += html;
+                    });
+            }
+
+            // Display all files
+            files.forEach(displayFile);
+        }
+
+        window.onload = startApp;
+    </script>
+</body>
+</html>

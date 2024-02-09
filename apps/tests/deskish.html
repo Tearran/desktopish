@@ -1,0 +1,615 @@
+<html>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="This is an example of a meta description.">
+<meta name="keywords" content="HTML, CSS, JavaScript">
+<meta name="author" content="Joseph Turner">
+<meta charset="UTF-8">
+<meta name="application-name" content="Deskish">
+<meta name="theme-color" content="#000000">
+<meta name="msapplication-starturl" content="/">
+<meta name="msapplication-TileColor" content="#ffffff">
+
+
+
+
+<style>
+body {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto 1fr auto;
+	min-height: 100vh;
+	grid-gap: 10px;
+	margin: 0px;
+}
+
+header, footer {
+	grid-column: 1 / -1;
+	text-align: center;
+}
+
+header {
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    margin: 0;
+    padding: 0;
+}
+
+footer {
+	padding: 20px;
+}
+
+
+
+#window-overlay {
+	position: fixed;
+	top: 60px; /* adjust this value to match your header's height plus 5px gap */
+	left: 0;
+	width: 100%;
+	height: calc(100% - 60px); /* subtract the header's height plus 5px gap from the height */
+	background: rgba(0,0,0,0); /* semi-transparent black */
+	
+	display: none; /* hidden by default */
+}
+
+#window {
+	position: relative;
+	margin: 0 0 0 10px; /* top margin 0, right margin 0, bottom margin 0, left margin 10px */
+	padding: 20px;
+	width: 95%; /* adjust as needed */
+	height: 90%; /* adjust as needed */
+	border-radius: 20px; /* rounded corners */
+	box-shadow: 0 0 10px rgba(0,0,0,0.5); /* add shadow for depth */
+}
+
+#menu-overlay {
+	position: fixed;
+	top: 60px; /* adjust this value to match your header's height plus 5px gap */
+	left: 0;
+	width: 100%;
+	height: calc(100% - 60px); /* subtract the header's height plus 5px gap from the height */
+	background: rgba(0,0,0,0); /* semi-transparent black */
+	z-index: 1; /* above the rest of the page */
+	display: none; /* hidden by default */
+}
+
+#menunav {
+	position: relative;
+	margin: 0 0 0 10px; /* top margin 0, right margin 0, bottom margin 0, left margin 10px */
+	padding: 20px;
+	width: 27%; /* adjust as needed */
+	height: 80%; /* adjust as needed */
+	border-radius: 20px; /* rounded corners */
+	box-shadow: 0 0 10px rgba(0,0,0,0.5); /* add shadow for depth */
+}
+</style>
+
+<style>
+button {
+	background-color: rgba(0, 0, 0, 0); /* semi-transparent black */
+	border: none;
+	cursor: pointer;
+	font-size: 24px; /* adjust as needed */
+}
+
+a {
+	text-decoration: none;
+	margin-right: 10px;
+}
+a:hover {
+    color: #08d !important;
+}
+
+#main-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+#main-content div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+    margin: 0;
+    padding: 10px;
+}
+
+#taskbar {
+    margin: 0;
+    padding: 10px;
+}
+
+body.dark-theme, body.dark-theme #window, body.dark-theme #overlay, body.dark-theme #menunav {
+	background-color: #252525; /* light grey */
+	color: #fff;
+}
+
+body.light-theme, body.light-theme #window, body.light-theme #overlay, body.light-theme #menunav {
+	background-color: #fff;
+	color: #333;
+}
+
+body.dark-theme {
+	background-color: #000000; /* main dark theme color */
+	color: #fff;
+}
+
+body.dark-theme #window, body.dark-theme #overlay, body.dark-theme #taskbar, body.dark-theme #menu {
+	background-color: #252525; /* contrasting dark theme color */
+}
+
+body.light-theme {
+	background-color: #ffffff; /* main light theme color */
+	color: #333;
+}
+
+body.light-theme #window, body.light-theme #overlay, body.light-theme #taskbar, body.light-theme #menu {
+	background-color: #919191; /* contrasting light theme color */
+}
+
+body::-webkit-scrollbar-track {
+	background-color: #ccc;
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: #ddd;
+	border: 2px solid #ccc;
+}
+
+body.dark-theme::-webkit-scrollbar-track {
+	background-color: #444;
+}
+
+body.dark-theme::-webkit-scrollbar-thumb {
+	background-color: #555;
+	border: 2px solid #444;
+}
+
+body.dark-theme a {
+	color: #0af;
+}
+
+body.dark-theme a:visited {
+	color: #0f0;
+}
+
+body.light-theme a {
+	color: #003366;
+}
+
+
+body.light-theme a:visited {
+	color: #004cff;
+}
+
+@media (max-width: 600px) {
+    #main-content div {
+        flex: 1 0 16.66%; /* Six column layout on large screens */
+    }
+
+	#menunav {
+	position: relative;
+	margin: 0 0 0 10px; /* top margin 0, right margin 0, bottom margin 0, left margin 10px */
+	padding: 20px;
+	width: 80%; /* adjust as needed */
+	height: 80%; /* adjust as needed */
+	border-radius: 20px; /* rounded corners */
+	box-shadow: 0 0 10px rgba(0,0,0,0.5); /* add shadow for depth */
+}
+
+#window {
+	position: relative;
+	margin: 0 10px auto; /* top margin 0, right margin 0, bottom margin 0, left margin 10px */
+	padding: 20px;
+	width: 90%; /* adjust as needed */
+	height: 90%; /* adjust as needed */
+	border-radius: 20px; /* rounded corners */
+	box-shadow: 0 0 10px rgba(0,0,0,0.5); /* add shadow for depth */
+}
+
+}
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<script>
+		// Your JavaScript here
+
+		// Check if service workers are supported
+		if ('serviceWorker' in navigator) {
+			// Create a blob
+			var blob = new Blob([
+				`self.addEventListener('install', function(event) {
+					event.waitUntil(
+						caches.open('my-cache').then(function(cache) {
+							return cache.addAll([
+								'/', // caches the HTML file
+								'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css' // caches the Font Awesome CSS file
+							]);
+						})
+					);
+				});
+
+				self.addEventListener('fetch', function(event) {
+					event.respondWith(
+						caches.match(event.request)
+							.then(function(response) {
+								// Cache hit - return response
+								if (response) {
+									return response;
+								}
+								return fetch(event.request);
+							}
+						)
+					);
+				});`
+			], { type: 'text/javascript' });
+
+			var blobURL = URL.createObjectURL(blob);
+
+			// Register the service worker
+			navigator.serviceWorker.register(blobURL);
+		}
+</script>
+</head>
+<body class="dark-theme">
+	<div id="menu-overlay">
+		<div id="menunav">
+			<div id="search">
+				<form action="/search" method="get">
+					<input type="text" id="search-input" name="q" placeholder="Search">
+					<button type="submit"><i class="fas fa-search"></i></button>
+				</form>
+			</div>
+			<ul id="nav-menu">
+	
+				<!-- navigation menu items will be added here -->
+			</ul>
+			<!-- Content of the window goes here -->
+		</div>
+	</div>
+
+
+	<div id="window-overlay">
+		<div id="window">
+			<a href="#" id="close-link">
+				<i id="close-icon" class="fas fa-times"></i>
+			</a>
+			<a href="#" id="full-link">
+				<i class="fas fa-window-maximize"></i>
+			</a>
+			<!-- Content of the window goes here -->
+			<footer>
+				<div id="copy">
+					<p id="description"><!-- description --></p>			
+					<p id="copyright"><!-- &copy; --></p>
+				</div>
+			</footer>
+		</div>
+	</div>
+<header>
+	<div id="taskbar" style="display: flex; justify-content: space-between; align-items: center;">
+		<div id="menu">
+			<a href="#"><i class="fas fa-microchip fa-2x"></i></a>
+		</div>
+		<div id="page_name">Home</div>
+		<div id="system-tray">
+			<span id="time" style="margin-right: 10px;">00:00:00</span>
+			<a id="theme-switch"><i class="fas fa-lightbulb"></i></a>
+			<a href="#" id="window-icon"><i class="fas fa-window-maximize"></i></a>
+		</div>
+	</div>
+</header>
+
+<div class="container">
+	
+	<main id="main-content">
+		<div id="social-links-content"></div>
+<div id="contributors-content"></div>
+<div id="supporters-content"></div>
+	</main>
+	<div id="sidebar-right">
+
+	</div>
+
+</div>
+
+
+
+<!-- This script dynamically generates a navigation menu based on a JSON object. It first clears the existing navigation menu, then creates and adds a new list item and anchor element for each object in the JSON object. The text and href of the anchor element are set to the name and URL of the navigation link, respectively. -->
+
+<!-- This script updates the time displayed in the #time span every second -->
+	<script>
+		// Inside your createSection function, after creating the div element
+var div = document.createElement('div');
+div.style.border = '1px solid red'; // Add a border to the div
+	// Get the time element
+	var timeSpan = document.getElementById('time');
+
+	// Function to update the time
+	function updateTime() {
+		var now = new Date();
+		var hours = now.getHours();
+		var minutes = now.getMinutes();
+		var seconds = now.getSeconds();
+
+		// Convert to 12-hour format
+		var ampm = hours >= 12 ? 'PM' : 'AM';
+		hours = hours % 12;
+		hours = hours ? hours : 12; // the hour '0' should be '12'
+
+		// Format the time as HH:MM:SS AM/PM
+		var timeString = hours.toString().padStart(2, '0') + ':' +
+						minutes.toString().padStart(2, '0') + ':' +
+						seconds.toString().padStart(2, '0') + ' ' +
+						ampm;
+
+		// Update the time span
+		timeSpan.textContent = timeString;
+	}
+
+	// Update the time immediately, then every second
+	updateTime();
+	setInterval(updateTime, 1000);
+	</script>
+
+<!-- This script toggles the theme between dark mode and light mode -->
+	<script>
+	// Get the theme switch element
+	var themeSwitch = document.getElementById('theme-switch');
+
+	// Function to switch the theme
+	function switchTheme() {
+		var body = document.body;
+
+		// If the body has the class 'dark-theme', remove it and add 'light-theme'
+		if (body.classList.contains('dark-theme')) {
+			body.classList.remove('dark-theme');
+			body.classList.add('light-theme');
+		}
+		// Otherwise, remove 'light-theme' and add 'dark-theme'
+		else {
+			body.classList.remove('light-theme');
+			body.classList.add('dark-theme');
+		}
+	}
+
+	// Add a click event listener to the theme switch
+	themeSwitch.addEventListener('click', switchTheme);
+	</script>
+
+<!-- This script fills out the copyright notice -->
+	<script>
+		// Set the year and name
+		var year = "2019";
+		var name = "Traveling Aspie (AZ R.T.N.)";
+		
+		// Get the copyright paragraph
+		var copyParagraph = document.getElementById('copyright');
+
+		// Set the text
+		var text = "Discover the world with The Traveling Aspie. A resource for travel destinations and travel inspiration for individuals on the divergent spectrum.";
+
+		// Get the paragraph
+		var paragraph = document.getElementById('description');
+
+		// Set the text of the paragraph
+		paragraph.textContent = text;	
+
+		// Set the text of the copyright paragraph
+		copyParagraph.textContent = "\u00A9 " + year + " " + name + ". All rights reserved.";
+	</script>
+<!-- This script dynamically populates the main content area with sections. Each section has a title and content, which are defined in the mainContentData array. -->
+	<script>
+// Social links data
+var socialLinksData = [
+	
+	{ "url": "https://github.com/Tearran", "icon": "fab fa-github", "text": "GitHub" },
+	{ "url": "https://codepen.io/Tearran", "icon": "fab fa-codepen", "text": "CodePen" },
+	{ "url": "https://www.deviantart.com/tearran", "icon": "fab fa-deviantart", "text": "DeviantArt" },
+];
+var contributorsData = [ 
+	{ "url": "https://discord.gg/zTjP3ssMj3", "icon": "fab fa-discord", "text": "Discord" }
+];
+var supportersData = [
+{ "url": "https://www.armbian.com/", "icon": "fas fa-microchip", "text": "Armbian" }
+];
+
+// Get the main elements
+var socialLinksContent = document.getElementById('social-links-content');
+var contributorsContent = document.getElementById('contributors-content');
+var supportersContent = document.getElementById('supporters-content');
+
+// Clear the main elements
+socialLinksContent.innerHTML = '';
+contributorsContent.innerHTML = '';
+supportersContent.innerHTML = '';
+
+// Function to create a section
+function createSection(data, mainContent) {
+	// Loop through the data array
+	for (var i = 0; i < data.length; i++) {
+		// Create a new div, a, i, and p elements
+		var div = document.createElement('div');
+		var a = document.createElement('a');
+		var icon = document.createElement('i');
+		var p = document.createElement('p');
+
+		// Set the href attribute of the a element, the class attribute of the i element, and the text of the p element
+		a.href = data[i].url;
+		a.target = "_blank";
+		icon.className = data[i].icon;
+		icon.style.fontSize = "30px";
+		p.textContent = data[i].text;
+
+		// Add the i element to the a element
+		a.appendChild(icon);
+
+		// Add the a and p elements to the div element
+		div.appendChild(a);
+		div.appendChild(p);
+
+		// Add the div element to the main element
+		mainContent.appendChild(div);
+	}
+}
+
+// Create the sections
+createSection(socialLinksData, socialLinksContent);
+createSection(contributorsData, contributorsContent);
+createSection(supportersData, supportersContent);
+</script>
+
+
+<!-- This script handles the functionality of the navigation menu. -->
+<script>
+// Get the menu button and the menu overlay
+var menuButton = document.querySelector("#menu a");
+var menuOverlay = document.getElementById("menu-overlay");
+
+// Add an event listener for the click event on the menu button
+menuButton.addEventListener("click", function (event) {
+	event.preventDefault(); // prevent the default action
+	// Toggle the display of the menu overlay
+	if (menuOverlay.style.display === "none" || menuOverlay.style.display === "") {
+		menuOverlay.style.display = "block";
+	} else {
+		menuOverlay.style.display = "none";
+	}
+});
+
+// Get the menu nav
+var menuNav = document.getElementById("menunav");
+
+// Hide the menu when the overlay is clicked
+menuOverlay.addEventListener("click", function () {
+	menuOverlay.style.display = "none";
+});
+
+// Prevent the click event from propagating when the menu nav is clicked
+menuNav.addEventListener("click", function (event) {
+	event.stopPropagation();
+});
+
+// Get the navigation menu
+var navMenu = document.getElementById("nav-menu");
+
+// Define the links with submenus
+var links = [
+	{ 
+		text: "Home", 
+		url: "home.html",
+		submenu: [
+			{ text: "Sub Home 1", url: "subhome1.html" },
+			{ text: "Sub Home 2", url: "subhome2.html" }
+		]
+	},
+	{ 
+		text: "About", 
+		url: "about.html",
+		submenu: [
+			{ text: "Sub About 1", url: "subabout1.html" },
+			{ text: "Sub About 2", url: "subabout2.html" }
+		]
+	},
+	{ 
+		text: "Contact", 
+		url: "contact.html",
+		submenu: [
+			{ text: "Sub Contact 1", url: "subcontact1.html" },
+			{ text: "Sub Contact 2", url: "subcontact2.html" }
+		]
+	}
+];
+
+// Generate the navigation menu items
+links.forEach(function (link) {
+	var li = document.createElement("li");
+	var div = document.createElement("div"); // New div element
+	var a = document.createElement("a");
+	a.textContent = link.text;
+	a.href = link.url;
+	div.appendChild(a); // Add the a element to the div
+
+	// Check if there are submenus
+	if (link.submenu && link.submenu.length > 0) {
+		var ul = document.createElement("ul");
+		ul.style.display = "none"; // Hide the submenu by default
+		link.submenu.forEach(function (sublink) {
+			var subli = document.createElement("li");
+			var suba = document.createElement("a");
+			suba.textContent = sublink.text;
+			suba.href = sublink.url;
+			subli.appendChild(suba);
+			ul.appendChild(subli);
+		});
+		div.appendChild(ul); // Add the ul element to the div
+
+		// Add a click event listener to the main link
+		a.addEventListener("click", function (event) {
+			event.preventDefault(); // Prevent the default action
+			ul.style.display = ul.style.display === "none" ? "block" : "none"; // Toggle the display of the submenu
+		});
+	}
+
+	li.appendChild(div); // Add the div element to the li
+	navMenu.appendChild(li);
+});
+</script>
+
+<!-- script trasport-->
+<script>
+// Get the window overlay and the window
+var windowOverlay = document.getElementById('window-overlay');
+var window = document.getElementById('window');
+
+// Function to show the window overlay
+function showWindow() {
+	windowOverlay.style.display = 'flex';
+}
+
+// Function to hide the window overlay
+function hideWindow() {
+	windowOverlay.style.display = 'none';
+}
+
+// Add event listeners to show and hide the window overlay as needed
+// For example, you might show the window when a button is clicked, and hide it when the window overlay is clicked
+
+</script>
+<script>
+	// Get the window icon
+	var windowIcon = document.getElementById('window-icon');
+
+	// Add an event listener for the click event on the window icon
+	windowIcon.addEventListener("click", function () {
+		// If the window overlay is displayed, hide it
+		if (windowOverlay.style.display === 'flex') {
+			hideWindow();
+		}
+		// Otherwise, show it
+		else {
+			showWindow();
+		}
+	});
+
+	document.getElementById('close-link').addEventListener('click', function(event) {
+    event.preventDefault(); // prevent the default action
+    document.getElementById('window-overlay').style.display = 'none'; // hide the overlay
+});
+
+document.getElementById('full-link').addEventListener('click', function(event) {
+	event.preventDefault(); // prevent the default action
+	if (!document.fullscreenElement) {
+		document.documentElement.requestFullscreen();
+	} else if (document.exitFullscreen) {
+		document.exitFullscreen(); 
+	}
+});
+
+</script>
+
+</body>
+</html>

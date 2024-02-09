@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Your styles here -->
+    <style>
+    body {
+        background-color: #24292e;
+        color: #c9d1d9;
+    }
+    .repo-block {
+        border: 1px solid #444d56;
+        padding: 16px;
+        margin-bottom: 16px;
+        border-radius: 6px;
+        background-color: #30363d;
+    }
+    .repo-block a {
+        color: #58a6ff;
+        text-decoration: none;
+    }
+    .repo-block p {
+        margin: 0;
+    }
+    </style>
+</head>
+<body>
+    <h1 id="header"></h1>
+    <div id="repo-list"></div>
+
+    <script>
+        const USERNAME = "armbian";
+        let page = 1;
+
+        function fetchRepos(page) {
+            fetch(`https://api.github.com/users/${USERNAME}/repos?page=${page}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length === 0) {
+                        // No more repositories
+                        return;
+                    }
+
+                    const repoList = document.getElementById('repo-list');
+
+                    data.forEach(repo => {
+                        if (!repo.fork) {
+                            const div = document.createElement('div');
+                            div.className = 'repo-block';
+                            const a = document.createElement('a');
+                            a.href = repo.html_url;
+                            a.textContent = `${repo.name} ${repo.private ? 'Private' : 'Public'}`;
+                            div.appendChild(a);
+                            const desc = document.createElement('p');
+                            desc.textContent = `${repo.description}`;
+                            div.appendChild(desc);
+                            const lang = document.createElement('p');
+                            lang.textContent = `Language: ${repo.language} ${repo.license ? 'License: ' + repo.license.spdx_id : ''}`;
+                            div.appendChild(lang);
+                            const forks = document.createElement('p');
+                            forks.textContent = `Forks: ${repo.forks}`;
+                            div.appendChild(forks);
+                            const stars = document.createElement('p');
+                            stars.textContent = `Stars: ${repo.stargazers_count}`;
+                            div.appendChild(stars);
+                            const issues = document.createElement('p');
+                            issues.textContent = `Open Issues: ${repo.open_issues}`;
+                            div.appendChild(issues);
+                            const updated = document.createElement('p');
+                            updated.textContent = `Updated on ${new Date(repo.updated_at).toDateString()}`;
+                            div.appendChild(updated);
+                            repoList.appendChild(div);
+                        }
+                    });
+
+                    // Fetch next page
+                    fetchRepos(page + 1);
+                });
+        }
+
+        window.onload = function() {
+            document.getElementById('header').textContent = `${USERNAME}'s Repositories`;
+            fetchRepos(page);
+        }
+    </script>
+</body>
+</html>

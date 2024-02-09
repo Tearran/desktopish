@@ -1,0 +1,140 @@
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="This is an example of a meta description.">
+<meta name="keywords" content="HTML, CSS, JavaScript">
+<meta name="author" content="Joseph Turner">
+<meta charset="UTF-8">
+<meta name="application-name" content="Deskish">
+<meta name="theme-color" content="#000000">
+<meta name="msapplication-starturl" content="/">
+<meta name="msapplication-TileColor" content="#ffffff">
+
+<style>
+
+#main-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+#main-content div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+    margin: 0;
+    padding: 10px;
+}
+
+
+
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body class="dark-theme">
+	<div class="container">
+		<main id="main-content">
+			<div id="social-links-content"></div>
+			<div id="contributors-content"></div>
+			<div id="supporters-content"></div>
+		</main>
+	</div>
+
+<!-- This script dynamically populates the main content area with sections. Each section has a title and content, which are defined in the mainContentData array. -->
+	<script>
+// Social links data
+var socialLinksData = [
+
+	{ "url": "https://github.com/Tearran", "icon": "fab fa-github", "text": "GitHub" },
+	{ "url": "https://codepen.io/Tearran", "icon": "fab fa-codepen", "text": "CodePen" },
+	{ "url": "https://www.deviantart.com/tearran", "icon": "fab fa-deviantart", "text": "DeviantArt" },
+];
+var contributorsData = [
+	{ "url": "https://discord.gg/zTjP3ssMj3", "icon": "fab fa-discord", "text": "Discord" }
+];
+var supportersData = [
+{ "url": "https://www.armbian.com/", "icon": "fas fa-microchip", "text": "Armbian" }
+];
+
+// Get the main elements
+var socialLinksContent = document.getElementById('social-links-content');
+var contributorsContent = document.getElementById('contributors-content');
+var supportersContent = document.getElementById('supporters-content');
+
+// Clear the main elements
+socialLinksContent.innerHTML = '';
+contributorsContent.innerHTML = '';
+supportersContent.innerHTML = '';
+
+// Function to create a section
+function createSection(data, mainContent) {
+	// Loop through the data array
+	for (var i = 0; i < data.length; i++) {
+		// Create a new div, a, i, and p elements
+		var div = document.createElement('div');
+		var a = document.createElement('a');
+		var icon = document.createElement('i');
+		var p = document.createElement('p');
+
+		// Set the href attribute of the a element, the class attribute of the i element, and the text of the p element
+		a.href = data[i].url;
+		a.target = "_blank";
+		icon.className = data[i].icon;
+		icon.style.fontSize = "30px";
+		p.textContent = data[i].text;
+
+		// Add the i element to the a element
+		a.appendChild(icon);
+
+		// Add the a and p elements to the div element
+		div.appendChild(a);
+		div.appendChild(p);
+
+		// Add the div element to the main element
+		mainContent.appendChild(div);
+	}
+}
+
+// Create the sections
+createSection(socialLinksData, socialLinksContent);
+createSection(contributorsData, contributorsContent);
+createSection(supportersData, supportersContent);
+</script>
+
+<script>
+	// Get the window icon
+	var windowIcon = document.getElementById('window-icon');
+
+	// Add an event listener for the click event on the window icon
+	windowIcon.addEventListener("click", function () {
+		// If the window overlay is displayed, hide it
+		if (windowOverlay.style.display === 'flex') {
+			hideWindow();
+		}
+		// Otherwise, show it
+		else {
+			showWindow();
+		}
+	});
+
+	document.getElementById('close-link').addEventListener('click', function(event) {
+    event.preventDefault(); // prevent the default action
+    document.getElementById('window-overlay').style.display = 'none'; // hide the overlay
+});
+
+document.getElementById('full-link').addEventListener('click', function(event) {
+	event.preventDefault(); // prevent the default action
+	if (!document.fullscreenElement) {
+		document.documentElement.requestFullscreen();
+	} else if (document.exitFullscreen) {
+		document.exitFullscreen();
+	}
+});
+
+</script>
+
+</body>
+</html>

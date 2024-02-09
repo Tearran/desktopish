@@ -1,0 +1,184 @@
+@font-face {
+    font-family: 'iconarmbian';
+    src:  url('./tearran.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
+  
+  [class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'iconarmbian' !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+  
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icon-tearran:before {
+    content: "\e900";
+  }
+  .icon-picoder:before {
+    content: "\e901";
+  }
+  .icon-armbian:before {
+    content: "\e902";
+  }
+  .icon-armbian-tux:before {
+    content: "\e903";
+  }
+  .icon-home:before {
+    content: "\e904";
+  }
+  .icon-newspaper:before {
+    content: "\e905";
+  }
+  .icon-quill:before {
+    content: "\e907";
+  }
+  .icon-droplet:before {
+    content: "\e90b";
+  }
+  .icon-images:before {
+    content: "\e90e";
+  }
+  .icon-play:before {
+    content: "\e912";
+  }
+  .icon-film:before {
+    content: "\e913";
+  }
+  .icon-dice:before {
+    content: "\e915";
+  }
+  .icon-pacman:before {
+    content: "\e916";
+  }
+  .icon-spades:before {
+    content: "\e917";
+  }
+  .icon-clubs:before {
+    content: "\e918";
+  }
+  .icon-diamonds:before {
+    content: "\e919";
+  }
+  .icon-connection:before {
+    content: "\e91b";
+  }
+  .icon-mic:before {
+    content: "\e91e";
+  }
+  .icon-book:before {
+    content: "\e91f";
+  }
+  .icon-file-text:before {
+    content: "\e922";
+  }
+  .icon-files-empty:before {
+    content: "\e925";
+  }
+  .icon-folder:before {
+    content: "\e92f";
+  }
+  .icon-contrast:before {
+    content: "\e9d5";
+  }
+  .icon-star-empty:before {
+    content: "\e9d7";
+  }
+  .icon-star-half:before {
+    content: "\e9d8";
+  }
+  .icon-star-full:before {
+    content: "\e9d9";
+  }
+  .icon-heart:before {
+    content: "\e9da";
+  }
+  .icon-exit:before {
+    content: "\ea14";
+  }
+  .icon-play3:before {
+    content: "\ea1c";
+  }
+  .icon-pause2:before {
+    content: "\ea1d";
+  }
+  .icon-stop2:before {
+    content: "\ea1e";
+  }
+  .icon-backward2:before {
+    content: "\ea1f";
+  }
+  .icon-forward3:before {
+    content: "\ea20";
+  }
+  .icon-first:before {
+    content: "\ea21";
+  }
+  .icon-last:before {
+    content: "\ea22";
+  }
+  .icon-previous2:before {
+    content: "\ea23";
+  }
+  .icon-next2:before {
+    content: "\ea24";
+  }
+  .icon-eject:before {
+    content: "\ea25";
+  }
+  .icon-volume-high:before {
+    content: "\ea26";
+  }
+  .icon-volume-medium:before {
+    content: "\ea27";
+  }
+  .icon-volume-low:before {
+    content: "\ea28";
+  }
+  .icon-volume-mute:before {
+    content: "\ea29";
+  }
+  .icon-volume-mute2:before {
+    content: "\ea2a";
+  }
+  .icon-volume-increase:before {
+    content: "\ea2b";
+  }
+  .icon-infinite:before {
+    content: "\ea2f";
+  }
+  .icon-youtube:before {
+    content: "\ea9d";
+  }
+  .icon-tux:before {
+    content: "\eabd";
+  }
+  .icon-linkedin:before {
+    content: "\eac9";
+  }
+  .icon-paypal:before {
+    content: "\ead8";
+  }
+  .icon-chrome:before {
+    content: "\ead9";
+  }
+  .icon-libreoffice:before {
+    content: "\eae3";
+  }
+  .icon-html-five:before {
+    content: "\eae4";
+  }
+  .icon-html-five2:before {
+    content: "\eae5";
+  }
+  .icon-git:before {
+    content: "\eae7";
+  }

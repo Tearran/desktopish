@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mermaid Flowchart</title>
+	<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+	<style>
+		body {
+			background-color: #282c34;
+			color: #abb2bf;
+		}
+	</style>
+</head>
+<body>
+	<div class="mermaid">
+		graph TD
+	subgraph Main
+			subgraph Menu
+		
+				d1[Main Menu]
+
+				d2[Sub Menu]
+				d4((break))
+				d0(Command)
+				d3((exit))
+				d1 --> d2 
+				d2 --> d4
+				d2 --> d0
+				d1 --> d3
+				d4 --> d1
+
+				d0 --> d3
+
+			end
+			subgraph Config
+				d5[Config]
+				end
+	end
+
+
+	</div>
+	<script>
+		mermaid.initialize({
+			startOnLoad: true,
+			theme: 'dark',
+			securityLevel: 'loose'
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+{
+    "content": [
+        {
+            "name": "Forums",
+            "url": "https://armbian.tech/bb/",
+            "external": "0",
+            "icon": "fa fa-comments fa-2x"
+        },
+        {
+            "name": "Documentation",
+            "url": "https://armbian.tech/docs/",
+            "external": "0",
+            "icon": "fa fa-book fa-2x"
+        },
+        {
+            "name": "Test apps",
+            "url": "./apps/tests",
+            "external": "0",
+            "icon": "fa fa-folder-open fa-2x"
+        },
+        {
+            "name": "Retro Config editor",
+            "url": "./apps/configng.edit.html",
+            "external": "0",
+            "icon": "fa fa-cogs fa-2x"
+        },
+        {
+            "name": "Armbian ConfigNG",
+            "url": "https://armbian.com/",
+            "external": "1",
+            "icon": "icon-armbian-tux"
+        },
+        {
+            "name": "Joey Turner",
+            "url": "https://armbian.tech/apps/tearran.repo.html",
+            "external": "1",
+            "icon": "icon-tearran"
+        },
+        {
+            "name": "Armbian",
+            "url": "https://armbian.com/",
+            "external": "1",
+            "icon": "icon-armbian fa-2x"
+        },
+        {
+            "name": "Aria",
+            "url": "./apps/aria/",
+            "external": "0",
+            "icon": "fa fa-comments fa-2x"
+        }
+    ],
+    "contributors": [
+        {
+            "name": "Armbian",
+            "url": "https://armbian.com/",
+            "external": "true",
+            "icon": "icon-armbian fa-2x"
+        },
+        {
+            "name": "Joey Turner",
+            "url": "https://armbian.tech/apps/tearran.repo.html",
+            "external": "true",
+            "icon": "icon-tearran fa-2x"
+        },
+        {
+            "name": "Armbian ConfigNG",
+            "url": "https://armbian.com/",
+            "external": "true",
+            "icon": "icon-armbian-tux fa-2x"
+        }
+    ],
+    "Supporters": [
+        {
+            "name": "Joey Turner",
+            "url": "https://armbian.tech/apps/tearran.repo.html",
+            "external": "true",
+            "icon": "icon-tearran fa-2x"
+        },
+        {
+            "name": "Armbian",
+            "url": "https://armbian.com/",
+            "external": "true",
+            "icon": "icon-armbian fa-2x"
+        }
+    ],
+    "desktop": [
+        {
+            "name": "Documentation",
+            "url": "https://armbian.tech/docs/",
+            "external": "no",
+            "icon": "fa fa-book fa-2x",
+            "imgs": "./imgs/chzbacon.bbxSa4J.jpg"
+
+        },
+        {
+            "name": "Test apps",
+            "url": "./apps/tests",
+            "external": "no",
+            "icon": "fa fa-folder-open fa-2x",
+            "imgs": "./imgs/chzbacon.bbxSa4J.jpg"
+
+        },
+        {
+            "name": "Retro Config editor",
+            "url": "./apps/configng.edit.html",
+            "external": "no",
+            "icon": "fa fa-cogs fa-2x",
+            "imgs": "./imgs/luna_by_tearran.jpg"
+
+        },
+        {
+            "name": "Forums",
+            "url": "https://armbian.tech/bb/",
+            "external": "no",
+            "icon": "fa fa-comments fa-2x",
+            "imgs": "./imgs/tera_by_tearran.jpg"
+
+        }
+
+    ]
+}

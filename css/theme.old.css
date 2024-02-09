@@ -1,0 +1,106 @@
+:root {
+    --background-color: black;
+    --text-color: white;
+    --link-color: lightblue;
+    --modal-background-color: #1d2021;
+    --taskbar-background-color: #1d2021;
+    --button-background-color: #555;
+    --button-hover-background-color: #777;
+    --search-form-background-color: #777;
+    --search-form-hover-background-color: #999;
+    --scrollbar-bg: #232323;
+    --scrollbar-thumb: #888;
+    --scrollbar-thumb-hover: #555;
+    --highlight-color: #FF4500;
+}
+
+[data-theme="dark"] {
+    --background-color: #232323;
+    --text-color: #FFFFFF;
+    --link-color: green;
+    --modal-background-color: #747474;
+    --taskbar-background-color: #747474;
+    --button-background-color: #d7d7d7;
+    --button-hover-background-color: #555;
+    --search-form-background-color: #555;
+    --search-form-hover-background-color: #777;
+    --scrollbar-bg: #232323;
+    --scrollbar-thumb: #888;
+    --scrollbar-thumb-hover: #555;
+    --highlight-color: #FF4500;
+}
+
+[data-theme="light"] {
+    --background-color: white;
+    --text-color: black;
+    --link-color: blue;
+    --modal-background-color: #D3D3D3;
+    --taskbar-background-color: #D3D3D3;
+    --button-background-color: #0000FF;
+    --button-hover-background-color: #FF00FF;
+    --search-form-background-color: #0000FF;
+    --search-form-hover-background-color: #FF00FF;
+    --scrollbar-bg: #D3D3D3;
+    --scrollbar-thumb: #444;
+    --scrollbar-thumb-hover: #222;
+    --highlight-color: #FF00FF;
+}
+ 
+/* Width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-bg); 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover); 
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html, body, iframe {
+    border: none;
+}
+
+body {
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+/* Link color */
+body a {
+    color: var(--link-color);
+}
+
+body a:hover {
+    color: var(--link-hover-color);
+}
+
+body a:visited {
+    color: var(--link-visited-color);
+}
+
+/* Highlight color */
+body .highlight {
+    color: var(--highlight-color);
+}
+
+body .close {
+    background-color: transparent;
+    border: none;
+    color: var(--text-color);
+}
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mermaid Flowchart</title>
+	<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+	<style>
+		body {
+			background-color: #282c34;
+			color: #abb2bf;
+		}
+	</style>
+</head>
+<body>
+	<div class="mermaid">
+		flowchart TD
+		A[Rectangle Node] --> B((Round Node))
+		B --> C{Rhombus Node}
+		C -->|One| D>Asymmetric Node]
+		C -->|Two| E{{Subroutine Node}}
+		C -->|Three| F[Rectangle Node]
+		G[(Start/End Node)] --> H([Database Node])
+		H -->|Yes| I((End))
+		H -->|No| J>Process]
+		J --> K[Result]
+		K --> H
+		I --> C
+		click A "https://example.com/rectangle_node"
+		click B "https://example.com/round_node"
+		click C "https://example.com/rhombus_node"
+		click D "https://example.com/asymmetric_node"
+		click E "https://example.com/subroutine_node"
+		click F "https://example.com/rectangle_node"
+		click G "https://example.com/start_end_node"
+		click H "https://example.com/database_node"
+		click I "https://example.com/end"
+		click J "https://example.com/process"
+		click K "https://example.com/result"
+	</div>
+
+	<script>
+		mermaid.initialize({
+			startOnLoad: true,
+			theme: 'dark',
+			securityLevel: 'loose'
+		});
+	</script>
+</body>
+</html>

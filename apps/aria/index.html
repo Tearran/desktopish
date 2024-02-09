@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple RiveScript Chatbot</title>
+	<script src="./rivescript.min.js"></script>
+</head>
+<body>
+	<input id="userInput" type="text" placeholder="Type your message here..." />
+	<button onclick="sendMessage()">Send</button>
+	<div id="chatLog"></div>
+
+
+	<script>
+		// Create a new RiveScript interpreter
+		var bot = new RiveScript();
+
+		// Load an example reply set
+		bot.loadFile("brain.rive").then(loading_done).catch(loading_error);
+        // Add tutorial subroutine
+		bot.setSubroutine("tutorial", function(rs, args) {
+		    var command = args[0];
+		    var tutorials = {
+		        "bash": "Bash is a command line interpreter, or shell. To get a list of basic commands, you can type 'bash --help' in your terminal.",
+		        "python": "Python is a high-level, interpreted programming language. To get help in Python, you can use the 'help()' function in a Python interpreter.",
+		        // Add more tutorials here...
+		    };
+		    return tutorials[command] || "Sorry, I don't have a tutorial for that command.";
+		});
+
+		function loading_done() {
+			console.log("Bot has finished loading!");
+			bot.sortReplies();
+		}
+
+		function loading_error(error, filename, lineno) {
+			console.log("Error when loading files: " + error);
+		}
+
+		function sendMessage() {
+			var userInput = document.getElementById('userInput').value;
+			var reply = bot.reply("local-user", userInput);
+			document.getElementById('chatLog').innerHTML += "<p>User: " + userInput + "</p>";
+			reply.then(function(result) {
+				document.getElementById('chatLog').innerHTML += "<p>Bot: " + result + "</p>";
+			});
+		}
+	</script>
+</body>
+</html>

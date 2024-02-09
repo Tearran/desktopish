@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <style>
+    body {
+        background-color: #24292e;
+        color: #c9d1d9;
+    }
+    .repo-block {
+        border: 1px solid #444d56;
+        padding: 16px;
+        margin-bottom: 16px;
+        border-radius: 6px;
+        background-color: #30363d;
+    }
+    .repo-block a {
+        color: #58a6ff;
+        text-decoration: none;
+    }
+    .repo-block p {
+        margin: 0;
+    }
+    </style>
+<link rel="stylesheet" type="text/css" href="../css/theme.css">
+</head>
+<body data-theme="dark">
+    <h1 id="header"></h1>
+    <div id="repo-list"></div>
+    <h1>Forks Contributed To</h1>
+    <div id="fork-contrib"></div>
+
+    <script>
+        const USERNAME = "Tearran";
+        let page = 1;
+
+        function fetchRepos(page) {
+            fetch(`https://api.github.com/users/${USERNAME}/repos?page=${page}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length === 0) {
+                        // No more repositories
+                        return;
+                    }
+
+                    const repoList = document.getElementById('repo-list');
+
+    data.forEach(repo => {
+        if (!repo.fork) {
+            const lastUpdate = new Date(repo.updated_at);
+            const ninetyDaysAgo = new Date();
+            ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
+
+            if (lastUpdate >= ninetyDaysAgo) {
+                const div = document.createElement('div');
+                div.className = 'repo-block';
+                const a = document.createElement('a');
+                a.href = `https://github.com/${USERNAME}/${repo.name}/archive/refs/heads/main.zip`;
+                a.textContent = `${repo.name} ${repo.private ? 'Private' : 'Public'}`;
+                div.appendChild(a);
+                const desc = document.createElement('p');
+                desc.textContent = `${repo.description}`;
+                div.appendChild(desc);
+                const lang = document.createElement('p');
+                lang.textContent = `Language: ${repo.language} ${repo.license ? 'License: ' + repo.license.spdx_id : ''}`;
+                div.appendChild(lang);
+                const forks = document.createElement('p');
+                forks.textContent = `Forks: ${repo.forks}`;
+                div.appendChild(forks);
+                const stars = document.createElement('p');
+                stars.textContent = `Stars: ${repo.stargazers_count}`;
+                div.appendChild(stars);
+                const issues = document.createElement('p');
+                issues.textContent = `Open Issues: ${repo.open_issues}`;
+                div.appendChild(issues);
+                const updated = document.createElement('p');
+                updated.textContent = `Updated on ${new Date(repo.updated_at).toDateString()}`;
+                div.appendChild(updated);
+                repoList.appendChild(div);
+            }
+        }
+    });
+
+    // Fetch next page
+    fetchRepos(page + 1);
+                });
+        }
+
+function fetchForksContributedTo(page = 1) {
+    fetch(`https://api.github.com/users/${USERNAME}/repos?type=forks&page=${page}`)
+        .then(response => response.json())
+        .then(data => {
+            const forkContribList = document.getElementById('fork-contrib');
+
+            data.forEach(repo => {
+                const lastPush = new Date(repo.pushed_at);
+                const ninetyDaysAgo = new Date();
+                ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
+
+                if (lastPush >= ninetyDaysAgo) {
+                    const div = document.createElement('div');
+                    div.className = 'repo-block';
+                    const a = document.createElement('a');
+                    a.href = `https://github.com/${USERNAME}/${repo.name}/archive/refs/heads/main.zip`;
+                    a.textContent = `${repo.name} ${repo.private ? 'Private' : 'Public'}`;
+                    div.appendChild(a);
+                    const desc = document.createElement('p');
+                    desc.textContent = `${repo.description}`;
+                    div.appendChild(desc);
+                    const lang = document.createElement('p');
+                    lang.textContent = `Language: ${repo.language} ${repo.license ? 'License: ' + repo.license.spdx_id : ''}`;
+                    div.appendChild(lang);
+                    const forks = document.createElement('p');
+                    forks.textContent = `Forks: ${repo.forks}`;
+                    div.appendChild(forks);
+                    const stars = document.createElement('p');
+                    stars.textContent = `Stars: ${repo.stargazers_count}`;
+                    div.appendChild(stars);
+                    const issues = document.createElement('p');
+                    issues.textContent = `Open Issues: ${repo.open_issues}`;
+                    div.appendChild(issues);
+                    const updated = document.createElement('p');
+                    updated.textContent = `Updated on ${new Date(repo.updated_at).toDateString()}`;
+                    div.appendChild(updated);
+                    forkContribList.appendChild(div);
+                }
+            });
+
+            // Fetch next page
+            fetchForksContributedTo(page + 1);
+        });
+}
+
+// Call the function to start fetching
+
+
+        window.onload = function() {
+            document.getElementById('header').textContent = `${USERNAME}'s Repositories`;
+            fetchRepos(page);
+            fetchForksContributedTo();
+        }
+    </script>
+</body>
+</html>
