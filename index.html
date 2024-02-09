@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" type="image/svg+xml" href="./imgs/icons/armian-tux-logo.svg">
+  <link rel="stylesheet" href="./css/icons.css">
+  <link rel="stylesheet" href="./css/theme.css">
+  <style>
+
+
+
+body::-webkit-scrollbar-track {
+	background-color: #ccc;
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: #ddd;
+	border: 2px solid #ccc;
+}
+body a,body button {
+	color: rgb(174, 255, 173);
+}
+
+body a:hover,body button:hover {
+	color: #0f0;
+}
+	</style>
+</head>
+
+<body>
+	<div id="container">
+		<div id="window" class="window" style="display: none;">
+			<div class="window-decoration">
+				<button class="reset"><i class="fa-regular fa-window-restore"></i></button>
+				<button class="close"><i class="fa fa-times"></i></button>
+			</div>
+			<div class="window-content">
+				<iframe id="iframe" src="" style="border:0; width:100%; height:100%;"></iframe>
+			</div>
+		</div>
+    <span class="container">
+		<button id="toggleButton" style="width:64px;height:64px;margin: 0;">
+
+		<i class="fa-brands fa-linux fa-3x"></i>
+		</button>
+  </span>
+		<div id="tasks" class="parent cell space">
+
+			<div class="search-block">
+				<div class="search-form">
+					<input id="userInput" type="text" placeholder="Search..." />
+					<button>Search</button>
+        </div>
+			</div>
+
+			<span>
+				<hr>
+			</span>
+			<div id="site-links-content" class="menuDiv"></div>
+			<span>
+				<hr>
+			</span>
+			
+      <div id="supporters-content" class=""></div>
+			<div id="start-settings" class="settings row">
+				<button id="power" class="fullscreen"><i class="fa fa-power-off"></i></button>
+				<button id="light-switch"><i class="fas fa-moon"></i></button>
+				<button id="back-button"><i class="fas fa-arrow-left"></i></button>
+				<button id="forward-button"><i class="fas fa-arrow-right"></i></button>
+				<button id="refresh-button"><i class="fas fa-sync-alt"></i></button>
+				<button id="tearran-switch" class="hide"><i class="fas fa-moon"></i></button>
+			</div>
+		</div>
+
+		<span class="iconContainerWrapper">
+			<div id="iconContainer" class="iconContainer"></div>
+			<div id="contributors-content" class="iconContainer"></div>
+		</span>
+	</div>
+
+	</div>
+	<script src="./js/start.here.button.js"></script>
+	<script src="./js/window.buttons.js"></script>
+	<script src="./js/tech.sys.tray.js"></script>
+	<script>
+		window.onload = function() {
+			closeWindow();
+			openWindow();
+			resetWindow();
+			var currentImageIndex = 0;
+			var desktopItems = [];
+			// Load JSON file
+			fetch('./data/start.here.json')
+				.then(response => response.json())
+				.then(data => {
+					// Change iframe sources
+					changeIframeSrc(data.content, "site-links-content");
+					changeIframeSrc(data.contributors, "contributors-content");
+					changeIframeSrc(data.Supporters, "supporters-content");
+					// Set desktop items and change background image
+					desktopItems = data.desktop;
+					changeBackgroundImage();
+					// Then change the background image every 60 seconds
+					setInterval(changeBackgroundImage, 60000);
+					// Add desktop icons
+					changeIframeSrc(data.desktop, "iconContainer");
+				});
+
+			function changeBackgroundImage() {
+				if (desktopItems.length > 0) {
+					document.body.style.backgroundImage = 'url(' + desktopItems[currentImageIndex].imgs + ')';
+					currentImageIndex = (currentImageIndex + 1) % desktopItems.length;
+				}
+			}
+
+			function addDesktopIcons() {
+				// Assuming you have a container for the icons
+				var iconContainer = document.getElementById('iconContainer');
+				desktopItems.forEach(item => {
+					changeIframeSrc(item, "iconContainer");
+				});
+			}
+		}
+		document.getElementById('light-switch').addEventListener('click', function() {
+			var body = document.body;
+			if (body.classList.contains('light-mode')) {
+				body.classList.remove('light-mode');
+			} else {
+				body.classList.add('light-mode');
+			}
+		});
+		document.getElementById('back-button').addEventListener('click', function() {
+			window.history.back();
+		});
+		document.getElementById('forward-button').addEventListener('click', function() {
+			window.history.forward();
+		});
+		document.getElementById('refresh-button').addEventListener('click', function() {
+			location.reload();
+		});
+	</script>
+
+</body>
+
+</html>
