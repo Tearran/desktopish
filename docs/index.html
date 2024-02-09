@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Readme Viewer</title>
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+        <link rel="icon" href="/imgs/armbian-tux.svg">
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../css/theme.css">
+<style>
+            /* Width */
+            ::-webkit-scrollbar {
+                width: 10px;
+            }
+
+            /* Track */
+            ::-webkit-scrollbar-track {
+                background: #232323; 
+            }
+            
+            /* Handle */
+            ::-webkit-scrollbar-thumb {
+                background: #888; 
+            }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555; 
+            }
+            body {
+                height: 100vh;
+                width: 100vw;
+                margin: 0;
+                padding: 0;
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr;
+                grid-template-areas: 
+                    "nav"
+                    "content";
+            }
+
+            #links {
+                
+                right: 0;
+                top: 0;
+                height: calc(100% - 20px);
+                grid-area: nav;
+                display: block;
+                padding: 10px;
+                overflow: auto;
+                background-color: #435641b4;
+                z-index: 999;
+            }
+
+            #links a {
+                display: block;
+                padding: 10px 0;
+            }
+
+            #content {
+                width: calc(100% - 20px);
+                grid-area: content;
+                padding: 10px;
+            }
+            .language-bash {
+                color: #fb0000;
+                border: #232323;
+            }
+            @media (min-width: 600px) {
+                body {
+                    grid-template-columns: 1fr 200px;
+                    grid-template-rows: 1fr;
+                    grid-template-areas: 
+                        "content nav";
+                }
+            }
+            #content img {
+                max-width: 500px;
+                height: auto;
+            }
+
+            #content pre {
+                padding: 10px;
+                margin: 10px 0;
+                overflow:hidden;
+            }
+            #content p {
+                padding: 10px;
+                margin: 10px 0;
+            }
+
+        </style>
+    </head>
+    <body>
+
+
+            <div id="links"></div>
+            <div id="content"></div>
+
+        <script defer>
+            // List of files in your workspace
+            var files = [
+                { "name": "about.md", "description": "About the project" },
+                { "name": "deskishtop.md", "description": "Desktop configuration" },
+                { "name": "armbian-configng.md", "description": "Armbian configuration" },
+                { "name": "user_manual_generation.md", "description": "User manual generation" },
+                { "name": "armbianmonitor.md", "description": "Armbian monitor" },
+                /* ... other files ... */
+            ];
+
+            // Function to create a link for a file
+            function createLink(file) {
+                var link = document.createElement('a');
+                link.href = '#' + file.name;
+                link.textContent = file.name.replace('.md', '') + ' - ' + file.description;
+                link.onclick = function() {
+                    displayFile(file.name);
+                    return false;
+                };
+                document.getElementById('links').appendChild(link);
+            }
+
+            // Function to fetch and display a file
+            function displayFile(file) {
+                fetch(file)
+                    .then(response => response.text())
+                    .then(text => {
+                        var html = marked.parse(text); // Use marked.parse, not marked
+                        document.getElementById('content').innerHTML = html;
+                    });
+            }
+
+            function startApp() {
+                // Create links for all files
+                files.forEach(createLink);
+
+                // If there's a hash in the URL, display the corresponding file
+                var file = location.hash.substring(1); // Remove the # from the hash
+                if (files.find(f => f.name === file)) {
+                    displayFile(file);
+                }
+
+                // Add hashchange event listener inside startApp
+                window.addEventListener('hashchange', function() {
+                    var file = location.hash.substring(1); // Remove the # from the hash
+                    if (files.find(f => f.name === file)) {
+                        displayFile(file);
+                    }
+                });
+            }
+
+            window.onload = startApp;
+        </script>
+</body>
+</html>
