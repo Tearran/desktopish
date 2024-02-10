@@ -4,7 +4,7 @@ Desktop`ish is a project that aims to simulate a desktop environment within a we
 
 ## Why Simulate a Desktop?
 
-As cloud computing and web applications become more prevalent, the traditional desktop environment is evolving. Simulated Desktop is our response to this evolution. It simulates a desktop environment in a web browser, providing a familiar interface for users while leveraging the flexibility and accessibility of web technologies.
+ It simulates a desktop environment in a web browser, providing a familiar interface for users while leveraging the flexibility and accessibility of web technologies.
 
 Simulated Desktop is designed to offer a consistent and intuitive interface.
 
