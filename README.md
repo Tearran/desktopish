@@ -6,11 +6,11 @@ Desktop`ish is a project that aims to simulate a desktop environment within a we
 
 As cloud computing and web applications become more prevalent, the traditional desktop environment is evolving. Simulated Desktop is our response to this evolution. It simulates a desktop environment in a web browser, providing a familiar interface for users while leveraging the flexibility and accessibility of web technologies.
 
-Simulated Desktop is designed to offer a consistent and intuitive interface across a variety of devices. From high-powered desktop PCs to low-end mobile devices, its goal is to simplify the access and management of applications, regardless of the hardware used.
+Simulated Desktop is designed to offer a consistent and intuitive interface.
 
 ## Design Limitations
 
-Simulated Desktop is designed with certain constraints to ensure optimal performance and resource usage. Here are some intentional limitations:
+Desktop`ish is designed with certain constraints to ensure optimal performance and resource usage. Here are some intentional limitations:
 
 - **Single Window**: Simulated Desktop is designed to support only one active window at a time. This design choice helps to keep the interface simple and the resource usage minimal.
 - **Static Icon Locations**: The locations of the icons are static. This is a deliberate design decision to maintain a consistent user interface.
