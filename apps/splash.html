@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* SVG path drawing animation */
+        #line {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw 5s linear forwards;
+        }
+
+        @keyframes draw {
+            to { stroke-dashoffset: 0; }
+        }
+    </style>
+</head>
+<body>
+    <svg viewBox="0 0 100 100">
+        <path id="line" d="M10 10 L 90 90" stroke="#000" fill="transparent"/>
+    </svg>
+</body>
+</html>

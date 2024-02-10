@@ -61,12 +61,6 @@
             "url": "https://armbian.tech/apps/tearran.repo.html",
             "external": "true",
             "icon": "icon-tearran fa-2x"
-        },
-        {
-            "name": "Armbian ConfigNG",
-            "url": "https://armbian.com/",
-            "external": "true",
-            "icon": "icon-armbian-tux fa-2x"
         }
     ],
     "Supporters": [
@@ -89,7 +83,7 @@
             "url": "https://armbian.tech/docs/",
             "external": "no",
             "icon": "fa fa-book fa-2x",
-            "imgs": "./imgs/chzbacon.bbxSa4J.jpg"
+            "imgs": "https://armbian.tech/imgs/walpaper/armbian06-1430-very-dark-3840x2160.jpg"
 
         },
         {
@@ -97,7 +91,7 @@
             "url": "./apps/tests",
             "external": "no",
             "icon": "fa fa-folder-open fa-2x",
-            "imgs": "./imgs/chzbacon.bbxSa4J.jpg"
+            "imgs": "https://armbian.tech/imgs/104_FUjI_50.JPGg"
 
         },
         {
