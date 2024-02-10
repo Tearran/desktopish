@@ -28,13 +28,13 @@
             "name": "Armbian ConfigNG",
             "url": "https://armbian.com/",
             "external": "1",
-            "icon": "icon-armbian-tux"
+            "icon": "icon-armbian-tux fa-2x"
         },
         {
             "name": "Joey Turner",
             "url": "https://armbian.tech/apps/tearran.repo.html",
             "external": "1",
-            "icon": "icon-tearran"
+            "icon": "icon-tearran fa-2x"
         },
         {
             "name": "Armbian",
