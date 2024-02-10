@@ -82,3 +82,4 @@ If you want to modify the functionality of the desktop, you can do so by changin
 ## License
 
 Simulated Desktop is open source and available under the [GPL 2.0 License](LICENSE).
+
