@@ -47,6 +47,11 @@
             "url": "./apps/aria/",
             "external": "0",
             "icon": "fa fa-comments fa-2x"
+        },{
+            "name": "Wiki",
+            "url": "./wiki/",
+            "external": "0",
+            "icon": "fa fa-comments fa-2x"
         }
     ],
     "contributors": [
@@ -109,7 +114,13 @@
             "icon": "fa fa-comments fa-2x",
             "imgs": "./imgs/tera_by_tearran.jpg"
 
+        },{
+            "name": "Wiki",
+            "url": "./wiki/",
+            "external": "0",
+            "icon": "fa fa-comments fa-2x"
         }
+
 
     ]
 }
