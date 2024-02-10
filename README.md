@@ -1,6 +1,6 @@
-# Welcome to Simulated Desktop
+# Welcome to Desktop`ish
 
-Simulated Desktop is a project that aims to simulate a desktop environment within a web browser. It's a HTML5 template system that resembles a classic Linux desktop, providing a taskbar, start menu, system tray, and window decorations with simple close and button.
+Desktop`ish is a project that aims to simulate a desktop environment within a web browser. It's a HTML5 template system that resembles a classic Linux desktop, providing a taskbar, start menu, system tray, and window decorations with simple close and button.
 
 ## Why Simulate a Desktop?
 
