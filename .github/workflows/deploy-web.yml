@@ -7,14 +7,14 @@ jobs:
         name: 🎉 Deploy
         runs-on: ubuntu-latest
         steps:
-        - name: 🚚 Get latest code
-            uses: actions/checkout@v3
-                             
-        - name: 📂 Sync files
-            uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-            with:
-                server: ${{ secrets.SERVER_HOST}}  # replace with your server
-                username: ${{ secrets.SERVER_USERNAME }}
-                password: ${{ secrets.SERVER_PASSWORD }}     
-                server-dir: public_html/ # replace with your server directory
-                local-dir: ./ # replace with your local directory
+            - name: 🚚 Get latest code
+                uses: actions/checkout@v3
+                                                         
+            - name: 📂 Sync files
+                uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+                with:
+                    server: ${{ secrets.SERVER_HOST}}  # replace with your server
+                    username: ${{ secrets.SERVER_USERNAME }}
+                    password: ${{ secrets.SERVER_PASSWORD }}     
+                    server-dir: public_html/ # replace with your server directory
+                    local-dir: ./ # replace with your local directory
